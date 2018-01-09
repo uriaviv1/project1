@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/playerImage"
+        android:src="@drawable/turian" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Taurean Green"
+        android:layout_gravity="center"
+        android:id="@+id/fullName"
+        android:textSize="20sp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hight"
+            android:textSize="20sp"
+            android:fontFamily="@string/appbar_scrolling_view_behavior"
+            />
+        <TextView
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="posation"
+            android:textSize="20sp"
+            android:fontFamily="@string/appbar_scrolling_view_behavior"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+
+            android:layout_marginTop="30dp"
+            android:fontFamily="@string/appbar_scrolling_view_behavior"
+            android:text="number"
+            android:textSize="20sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/hight"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="183"
+            android:textSize="30sp"
+            android:fontFamily="@string/appbar_scrolling_view_behavior"
+            />
+        <TextView
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SG"
+            android:id="@+id/postaion"
+            android:textSize="30sp"
+            android:fontFamily="@string/appbar_scrolling_view_behavior"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:id="@+id/number"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@string/appbar_scrolling_view_behavior"
+            android:text="11"
+            android:textSize="30sp" />
+    </LinearLayout>
+</LinearLayout>
