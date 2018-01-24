@@ -19,7 +19,8 @@
         <activity android:name=".LogInActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".SummeyAct" />
-        <activity android:name=".Players"></activity>
+        <activity android:name=".Players" />
+        <activity android:name=".Chatactivity"></activity>
     </application>
 
 </manifest>

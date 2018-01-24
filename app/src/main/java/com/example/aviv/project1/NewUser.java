@@ -4,11 +4,11 @@ package com.example.aviv.project1;
  * Created by Aviv on 16/12/2017.
  */
 
-public class User extends Person {
+public class NewUser extends Person {
     private String email;
     private int age;
     private String password;
-    public User(String firstName, String lastName, String email, String password ,int age) {
+    public NewUser(String firstName, String lastName, String email, String password , int age) {
         super(firstName, lastName);
         if(email!="") {
             this.email = email;
