@@ -14,7 +14,7 @@ public class SummeyAct extends AppCompatActivity implements View.OnClickListener
 Context context;
 FirebaseAuth firebaseAuth;
 
-    Button moveToPlayersActivity,logOut;
+    Button moveToPlayersActivity,logOut,gotochatactivity;
 Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,8 @@ Intent intent;
     logOut=(Button)findViewById(R.id.logOut);
     logOut.setOnClickListener(this);
     firebaseAuth=FirebaseAuth.getInstance();
+    gotochatactivity=(Button)findViewById(R.id.gotochatactivity);
+    gotochatactivity.setOnClickListener(this);
 
     context=this;
     }
@@ -39,6 +41,11 @@ Intent intent;
         {
             firebaseAuth.signOut();
             intent=new Intent(this,MainActivity.class);
+            startActivity(intent);
+        }
+        if(view==gotochatactivity)
+        {
+            intent=new Intent(context,Chatactivity.class);
             startActivity(intent);
         }
     }

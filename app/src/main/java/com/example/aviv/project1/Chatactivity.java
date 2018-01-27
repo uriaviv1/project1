@@ -8,6 +8,6 @@ public class Chatactivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chatactivity);
+        setContentView(R.layout.activity_chatactivity2);
     }
 }
