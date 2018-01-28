@@ -5,25 +5,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.aviv.project1.Chatactivity">
-
-    <ListView
-        android:id="@+id/Lv1"
+    <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></ListView>
-
+        android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Lv1">
+    </ListView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="message"
+            android:id="@+id/message"
+            android:textSize="30sp"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="massege"
-            android:id="@+id/ETmassege"/>
+            android:layout_gravity="right"
+            android:id="@+id/send"
+            android:gravity="right" />
+
     </LinearLayout>
+</LinearLayout>
+    </ScrollView>
 </LinearLayout>
