@@ -9,15 +9,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -33,27 +36,40 @@ FirebaseFirestore FF;
     ListView LV1;
     EditText message;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatactivity2);
         context=this;
         //s=getIntent().getExtras().getString("name");
+        LV1=(ListView)findViewById(R.id.LV);
         send=(Button)findViewById(R.id.send);
         message=(EditText)findViewById(R.id.message);
-        CollectionReference collectionReference=FF.collection("message");
-        collectionReference.addSnapshotListener(new com.google.firebase.firestore.EventListener<QuerySnapshot>() {
+
+        FF=FirebaseFirestore.getInstance();
+
+        FF.collection("massege").addSnapshotListener(new com.google.firebase.firestore.EventListener<QuerySnapshot>(){
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                Set<String>set=new HashSet<String>();
-                Iterator i=documentSnapshots.iterator();
-                while (i.hasNext())
+                ArrayList<Msg> arrayList=new ArrayList<>();
+
+                for (DocumentSnapshot documentSnapshot:documentSnapshots)
                 {
-                    set.add((String) i.next());
+                    if(documentSnapshot!=null) {
+                        Msg msg = new Msg((String) documentSnapshot.get("name"), (String) documentSnapshot.get("massege"));
+                        arrayList.add(msg);
+                        Toast.makeText(context, msg.toString(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+              MsgAdapter msgAdapter=new MsgAdapter(context,0,0,arrayList);
+                if(!msgAdapter.msgList.isEmpty()) {
+                    LV1.setAdapter(msgAdapter);
                 }
             }
         });
-        FF=FirebaseFirestore.getInstance();
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +78,8 @@ FirebaseFirestore FF;
                 massege.put("Message",message.getText().toString());
                 massege.put("name","uri");
                 FF.collection("message").add(massege);
-                send.setText("");
+                message.setText("");
+
 
             }
         });
