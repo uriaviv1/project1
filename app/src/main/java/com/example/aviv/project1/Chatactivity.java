@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -24,8 +26,10 @@ FirebaseFirestore FF;
     Context context;
     //String s;
     Button send;
+    FirebaseUser firebaseUser;
     ListView LV1;
     EditText message;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +39,16 @@ FirebaseFirestore FF;
         LV1=(ListView)findViewById(R.id.Lv1);
         send=(Button)findViewById(R.id.send);
         message=(EditText)findViewById(R.id.message);
+       firebaseAuth=FirebaseAuth.getInstance();
 
         FF=FirebaseFirestore.getInstance();
-
+        firebaseUser= firebaseAuth.getCurrentUser();
+        final String name=firebaseUser.getEmail();
         FF.collection("message").addSnapshotListener(new com.google.firebase.firestore.EventListener<QuerySnapshot>(){
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
                 ArrayList<Message> arrayList=new ArrayList<>();
-                Toast.makeText(context, "chack2", Toast.LENGTH_SHORT).show();
+
 
 
                 for (DocumentSnapshot documentSnapshot:documentSnapshots)
@@ -55,7 +61,7 @@ FirebaseFirestore FF;
 
 
                         arrayList.add(msg);
-                        Toast.makeText(context, msg.toString(), Toast.LENGTH_SHORT).show();
+
                     }
 
 
@@ -74,9 +80,10 @@ FirebaseFirestore FF;
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                
                 Map<String,Object>messageMap=new HashMap<>();
                 messageMap.put("message",message.getText().toString());
-                messageMap.put("name","uri");
+                messageMap.put("name",name);
                 FF.collection("message").add(messageMap);
                 message.setText("");
 
