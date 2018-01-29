@@ -16,10 +16,10 @@ import java.util.List;
  * Created by Aviv on 28/01/2018.
  */
 
-public class MsgAdapter extends ArrayAdapter<Msg> {
+public class MsgAdapter extends ArrayAdapter<Message> {
     Context context;
-    List<Msg>msgList;
-    public MsgAdapter(@NonNull Context context, int resource, int textViewResourceId, @NonNull List<Msg> objects) {
+    List<Message>msgList;
+    public MsgAdapter(@NonNull Context context, int resource, int textViewResourceId, @NonNull List<Message> objects) {
         super(context, resource, textViewResourceId, objects);
         this.context=context;
         this.msgList=objects;
@@ -32,9 +32,9 @@ public class MsgAdapter extends ArrayAdapter<Msg> {
         View view=layoutInflater.inflate(R.layout.massege,parent,false);
         TextView name=(TextView)view.findViewById(R.id.name);
         TextView msg=(TextView)view.findViewById(R.id.massege);
-        Msg temp=msgList.get(position);
+        Message temp=msgList.get(position);
         name.setText(temp.getName());
-        msg.setText(temp.getMsg());
+        msg.setText(temp.getMessage());
         return view;
     }
 }
