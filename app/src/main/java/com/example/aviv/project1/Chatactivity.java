@@ -24,12 +24,12 @@ import java.util.Map;
 public class Chatactivity extends AppCompatActivity {
 FirebaseFirestore FF;
     Context context;
-    //String s;
     Button send;
     FirebaseUser firebaseUser;
     ListView LV1;
     EditText message;
     FirebaseAuth firebaseAuth;
+    Integer i=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +44,12 @@ FirebaseFirestore FF;
         FF=FirebaseFirestore.getInstance();
         firebaseUser= firebaseAuth.getCurrentUser();
         final String name=firebaseUser.getEmail();
-        FF.collection("message").addSnapshotListener(new com.google.firebase.firestore.EventListener<QuerySnapshot>(){
+        FF.collection("message").orderBy("id").addSnapshotListener(new com.google.firebase.firestore.EventListener<QuerySnapshot>(){
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
                 ArrayList<Message> arrayList=new ArrayList<>();
 
-
+                i=0;
 
                 for (DocumentSnapshot documentSnapshot:documentSnapshots)
                 {
@@ -58,19 +58,29 @@ FirebaseFirestore FF;
                     if(documentSnapshot!=null) {
                         Log.d("agony", documentSnapshot.getId() + ", " + documentSnapshot.get("name"));
                         Message msg = documentSnapshot.toObject(Message.class);
-
-
+                        i++;
                         arrayList.add(msg);
+
+
 
                     }
 
 
                 }
               MsgAdapter msgAdapter=new MsgAdapter(context,0,0,arrayList);
+                if(arrayList.size()>20)
+                {
+                    for(Integer k=0;k<arrayList.size();k++)
+                    {
+                        FF.collection("message").document(k.toString()).delete();
+
+                    }
+                }
                if(!msgAdapter.msgList.isEmpty()) {
                    LV1.setAdapter(msgAdapter);
 
                 }
+
 
             }
 
@@ -80,11 +90,12 @@ FirebaseFirestore FF;
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+
                 Map<String,Object>messageMap=new HashMap<>();
                 messageMap.put("message",message.getText().toString());
                 messageMap.put("name",name);
-                FF.collection("message").add(messageMap);
+                messageMap.put("id", i);
+                FF.collection("message").document(i.toString()).set(messageMap);
                 message.setText("");
 
 
