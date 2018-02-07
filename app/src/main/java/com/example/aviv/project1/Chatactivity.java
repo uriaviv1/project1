@@ -68,18 +68,7 @@ FirebaseFirestore FF;
 
                 }
               MsgAdapter msgAdapter=new MsgAdapter(context,0,0,arrayList);
-                if(arrayList.size()>20)
-                {
-                    for(Integer k=0;k<arrayList.size();k++)
-                    {
-                        FF.collection("message").document(k.toString()).delete();
-
-                    }
-                }
-               if(!msgAdapter.msgList.isEmpty()) {
-                   LV1.setAdapter(msgAdapter);
-
-                }
+                delete(arrayList, msgAdapter);
 
 
             }
@@ -91,16 +80,35 @@ FirebaseFirestore FF;
             @Override
             public void onClick(View view) {
 
-                Map<String,Object>messageMap=new HashMap<>();
-                messageMap.put("message",message.getText().toString());
-                messageMap.put("name",name);
-                messageMap.put("id", i);
-                FF.collection("message").document(i.toString()).set(messageMap);
-                message.setText("");
+                addNewMessage(name);
 
 
             }
         });
 
+    }
+
+    private void addNewMessage(String name) {
+        Map<String,Object> messageMap=new HashMap<>();
+        messageMap.put("message",message.getText().toString());
+        messageMap.put("name",name);
+        messageMap.put("id", i);
+        FF.collection("message").document(i.toString()).set(messageMap);
+        message.setText("");
+    }
+
+    private void delete(ArrayList<Message> arrayList, MsgAdapter msgAdapter) {
+        if(arrayList.size()>20)
+        {
+            for(Integer k=0;k<arrayList.size();k++)
+            {
+                FF.collection("message").document(k.toString()).delete();
+
+            }
+        }
+        if(!msgAdapter.msgList.isEmpty()) {
+            LV1.setAdapter(msgAdapter);
+
+         }
     }
 }
