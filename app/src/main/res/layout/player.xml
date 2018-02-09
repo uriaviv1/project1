@@ -1,85 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/playerImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/playerImage"
-        android:src="@drawable/turian" />
+        android:src="@drawable/turian"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="8dp" />
+
+
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Taurean Green"
-        android:layout_gravity="center"
         android:id="@+id/fullName"
-        android:textSize="20sp"/>
-    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_marginTop="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="hight"
-            android:textSize="20sp"
-            android:fontFamily="@string/appbar_scrolling_view_behavior"
-            />
-        <TextView
-            android:layout_marginLeft="110dp"
-            android:layout_marginTop="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="posation"
-            android:textSize="20sp"
-            android:fontFamily="@string/appbar_scrolling_view_behavior"
-            />
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:text="Taurean Green"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/playerImage"
+        tools:layout_editor_absoluteX="127dp"
+        tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-
-            android:layout_marginTop="30dp"
-            android:fontFamily="@string/appbar_scrolling_view_behavior"
-            android:text="number"
-            android:textSize="20sp" />
-    </LinearLayout>
-    <LinearLayout
+    <TextView
+        android:id="@+id/hight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/hight"
-            android:layout_marginTop="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="183"
-            android:textSize="30sp"
-            android:fontFamily="@string/appbar_scrolling_view_behavior"
-            />
-        <TextView
-            android:layout_marginLeft="130dp"
-            android:layout_marginTop="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SG"
-            android:id="@+id/postaion"
-            android:textSize="30sp"
-            android:fontFamily="@string/appbar_scrolling_view_behavior"
-            />
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@string/appbar_scrolling_view_behavior"
+        android:text="183"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/number"
+        app:layout_constraintHorizontal_bias="0.209"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:id="@+id/number"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@string/appbar_scrolling_view_behavior"
-            android:text="11"
-            android:textSize="30sp" />
-    </LinearLayout>
-</LinearLayout>
+    <TextView
+        android:id="@+id/postaion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@string/appbar_scrolling_view_behavior"
+        android:text="SG"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:layout_editor_absoluteX="297dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:fontFamily="@string/appbar_scrolling_view_behavior"
+        android:text="posation"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        tools:layout_editor_absoluteY="294dp" />
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="88dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@string/appbar_scrolling_view_behavior"
+        android:text="11"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/postaion"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:fontFamily="@string/appbar_scrolling_view_behavior"
+        android:text="number"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="158dp"
+        tools:layout_editor_absoluteY="294dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="height"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="294dp" />
+</android.support.constraint.ConstraintLayout>

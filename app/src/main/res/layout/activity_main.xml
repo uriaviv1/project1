@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/MainBlue"
+    android:background="@color/common_google_signin_btn_text_dark_default"
     android:orientation="vertical"
     tools:context="com.example.aviv.project1.MainActivity">
 
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="132dp"
         android:background="@color/LightBlue"
         android:text="sign up"
         android:textColor="@color/Text"
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="132dp"
         android:background="@color/LightBlue"
         android:text="sign in"
         android:textColor="@color/Text"
