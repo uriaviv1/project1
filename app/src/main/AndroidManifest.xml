@@ -20,7 +20,7 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".SummeyAct" />
         <activity android:name=".Players" />
-        <activity android:name=".Chatactivity"></activity>
+        <activity android:name=".Chatactivity" />
     </application>
 
 </manifest>
