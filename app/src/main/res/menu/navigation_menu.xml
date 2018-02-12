@@ -4,12 +4,14 @@
     android:title="Player list">
 
 </item>
-    <item android:id="@+id/chatMenu"
-        android:title="Fan chat">
+    <item android:id="@+id/FanChatMenu"
+        android:title="Fan chat"
+        >
 
     </item>
-    <item android:id="@+id/LogOutMenu"
+    <item android:id="@+id/SighnOutMenu"
         android:title="Signout">
+
 
     </item>
 </menu>

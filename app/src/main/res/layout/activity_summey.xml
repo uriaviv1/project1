@@ -5,13 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
+
     tools:context="com.example.aviv.project1.SummeyAct">
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:menu="@menu/navigation_menu"
-        android:layout_gravity="start">
+        android:layout_gravity="start"
+        android:id="@+id/navigation_menu"
+        app:menu="@menu/navigation_menu">
 
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>
