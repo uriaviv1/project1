@@ -46,6 +46,7 @@ EditText email,password;
 
                 Intent intent=new Intent(context,SummeyAct.class);
                 startActivity(intent);
+                finish();
             }
             else
             {

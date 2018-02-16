@@ -86,7 +86,7 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
                 break;
             case R.id.FanChatMenu:
                 fragment=new Chatactivity();
-                
+
                 fragmentTransaction.replace(R.id.FragmentSummery,fragment);
                 fragmentTransaction.commit();
                 break;

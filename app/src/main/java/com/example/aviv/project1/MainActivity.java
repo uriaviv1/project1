@@ -31,6 +31,7 @@ Context context;
         {
             intent=new Intent(this,SummeyAct.class);
             startActivity(intent);
+            finish();
         }
     }
 
@@ -40,6 +41,7 @@ Context context;
         {
             intent=new Intent(context,LogInActivity.class);
             startActivity(intent);
+            
         }
         if(view==signUp)
         {

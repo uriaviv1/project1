@@ -59,6 +59,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 if (task.isSuccessful()) {
 
                     startActivity(intent);
+                    finish();
                 }
             }
         });
