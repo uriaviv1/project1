@@ -1,9 +1,12 @@
 package com.example.aviv.project1;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +28,9 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     Intent intent;
+    android.app.Fragment fragment;
+    android.app.FragmentManager fragmentManager;
+    android.app.FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,14 +75,20 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Log.d("menu id",String.valueOf(item.getItemId()));
+        Fragment fragment;
+        fragmentManager=getFragmentManager();
+        fragmentTransaction=fragmentManager.beginTransaction();
         switch (item.getItemId()) {
             case R.id.PlayerListMenu:
-                Intent intent = new Intent(context, Players.class);
-                startActivity(intent);
+                 fragment=new Players();
+                fragmentTransaction.replace(R.id.FragmentSummery,fragment);
+                fragmentTransaction.commit();
                 break;
             case R.id.FanChatMenu:
-                Intent intent2 = new Intent(context,Chatactivity.class);
-                startActivity(intent2);
+                fragment=new Chatactivity();
+                
+                fragmentTransaction.replace(R.id.FragmentSummery,fragment);
+                fragmentTransaction.commit();
                 break;
                 case R.id.SighnOutMenu:
                 LogOutMethod();

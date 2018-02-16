@@ -1,21 +1,28 @@
 package com.example.aviv.project1;
 
+import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class Players extends AppCompatActivity {
+public class Players extends Fragment {
 PlayerAdapter playerAdapter;
 ArrayList<Player> players;
 ListView LV;
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_players);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView= inflater.inflate(R.layout.activity_players, container, false);
         Bitmap Avivi= BitmapFactory.decodeResource(getResources(),R.drawable.avivi);
         Bitmap Taurean= BitmapFactory.decodeResource(getResources(),R.drawable.turian);
         Bitmap Sam= BitmapFactory.decodeResource(getResources(),R.drawable.sam);
@@ -46,9 +53,10 @@ ListView LV;
         players=new ArrayList<Player>();
         players.add(P2); players.add(P3); players.add(P4); players.add(P10); players.add(P5); players.add(P6);
         players.add(P7); players.add(P1); players.add(P8); players.add(P9); players.add(P11); players.add(P12); players.add(P13);
-        playerAdapter=new PlayerAdapter(this,0,0,players);
-        LV=(ListView)findViewById(R.id.LV);
+        playerAdapter=new PlayerAdapter(getContext(),0,0,players);
+        LV=(ListView)rootView.findViewById(R.id.LV);
         LV.setAdapter(playerAdapter);
+        return rootView;
 
 
     }
