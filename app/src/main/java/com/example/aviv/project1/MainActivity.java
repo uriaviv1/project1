@@ -41,7 +41,7 @@ Context context;
         {
             intent=new Intent(context,LogInActivity.class);
             startActivity(intent);
-            
+
         }
         if(view==signUp)
         {
