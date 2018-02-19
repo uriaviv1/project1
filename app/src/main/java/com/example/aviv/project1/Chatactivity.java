@@ -3,6 +3,7 @@ package com.example.aviv.project1;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +36,11 @@ FirebaseFirestore FF;
     EditText message;
     FirebaseAuth firebaseAuth;
     Integer i=0;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

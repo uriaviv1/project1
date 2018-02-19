@@ -7,16 +7,13 @@
     android:id="@+id/drawer_layout"
 
     tools:context="com.example.aviv.project1.SummeyAct">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-<fragment
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:name="com.example.aviv.project1.EmptyFragment"
 
-    android:id="@+id/FragmentSummery"></fragment>
-    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frame_layout_summeey">
+
+    </FrameLayout>
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

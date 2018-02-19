@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ActionMenuView;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +31,7 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
     Intent intent;
     android.app.Fragment fragment;
     android.app.FragmentManager fragmentManager;
+    FrameLayout frameLayout;
     android.app.FragmentTransaction fragmentTransaction;
 
     @Override
@@ -44,6 +46,7 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         context = this;
+        frameLayout=(FrameLayout)findViewById(R.id.frame_layout_summeey);
         navigationView.setNavigationItemSelectedListener(this);
 
 
@@ -75,20 +78,17 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Log.d("menu id",String.valueOf(item.getItemId()));
+        FragmentStart();
         Fragment fragment;
-        fragmentManager=getFragmentManager();
-        fragmentTransaction=fragmentManager.beginTransaction();
         switch (item.getItemId()) {
             case R.id.PlayerListMenu:
                  fragment=new Players();
-                fragmentTransaction.replace(R.id.FragmentSummery,fragment);
-                fragmentTransaction.commit();
+                replaceFragment(fragment);
                 break;
             case R.id.FanChatMenu:
                 fragment=new Chatactivity();
 
-                fragmentTransaction.replace(R.id.FragmentSummery,fragment);
-                fragmentTransaction.commit();
+                replaceFragment(fragment);
                 break;
                 case R.id.SighnOutMenu:
                 LogOutMethod();
@@ -97,5 +97,16 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
 
         }
         return false;
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        fragmentTransaction.replace(R.id.frame_layout_summeey,fragment);
+        fragmentTransaction.commit();
+    }
+
+    private void FragmentStart() {
+        Fragment fragment;
+        fragmentManager=getFragmentManager();
+        fragmentTransaction=fragmentManager.beginTransaction();
     }
 }
