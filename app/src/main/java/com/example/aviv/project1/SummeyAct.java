@@ -5,22 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ActionMenuView;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class SummeyAct extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     Context context;
@@ -33,27 +27,22 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
     android.app.FragmentManager fragmentManager;
     FrameLayout frameLayout;
     android.app.FragmentTransaction fragmentTransaction;
+    private TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summey);
-        firebaseAuth=FirebaseAuth.getInstance();
-        navigationView=(NavigationView)findViewById(R.id.navigation_menu);
+        firebaseAuth = FirebaseAuth.getInstance();
+        navigationView = (NavigationView) findViewById(R.id.navigation_menu);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this ,drawerLayout, R.string.open, R.string.close);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         context = this;
-        frameLayout=(FrameLayout)findViewById(R.id.frame_layout_summeey);
+        frameLayout = (FrameLayout) findViewById(R.id.frame_layout_summeey);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-
-
-
-
     }
 
     @Override
