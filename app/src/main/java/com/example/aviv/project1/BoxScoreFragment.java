@@ -14,26 +14,24 @@ import android.widget.TextView;
 
 public class BoxScoreFragment extends Fragment {
     TextView TV;
-    View rootView
+    View rootView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-       rootView= inflater.inflate(R.layout.activity_chatactivity2, container, false);
+        rootView = inflater.inflate(R.layout.activity_chatactivity2, container, false);
         Downlode();
         return rootView;
-
-
 
 
     }
 
     private void Downlode() {
-        TV = (TextView)rootView.findViewById(R.id.tv1);
+        TV = (TextView) rootView.findViewById(R.id.tv1);
         new DownloadText(TV).execute("");
 
     }
-
-
-    }
 }
+
+

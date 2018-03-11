@@ -82,6 +82,10 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
                 case R.id.SighnOutMenu:
                 LogOutMethod();
                 break;
+            case R.id.BoxScoreMenu:
+                fragment=new BoxScoreFragment();
+                replaceFragment(fragment);
+                break;
 
 
         }
