@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SummeyAct extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class SummeyAct extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Context context;
     NavigationView navigationView;
     FirebaseAuth firebaseAuth;
@@ -49,9 +49,8 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
     public boolean onOptionsItemSelected(MenuItem item) {
 
 
-        if(actionBarDrawerToggle.onOptionsItemSelected(item))
-        {
-           // return true;
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            // return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -66,24 +65,28 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Log.d("menu id",String.valueOf(item.getItemId()));
+        Log.d("menu id", String.valueOf(item.getItemId()));
         FragmentStart();
         Fragment fragment;
         switch (item.getItemId()) {
             case R.id.PlayerListMenu:
-                 fragment=new Players();
+                drawerLayout.closeDrawers();
+                fragment = new Players();
                 replaceFragment(fragment);
+
                 break;
             case R.id.FanChatMenu:
-                fragment=new Chatactivity();
-
+                fragment = new Chatactivity();
+                drawerLayout.closeDrawers();
                 replaceFragment(fragment);
                 break;
-                case R.id.SighnOutMenu:
+            case R.id.SighnOutMenu:
                 LogOutMethod();
+                drawerLayout.closeDrawers();
                 break;
             case R.id.BoxScoreMenu:
-                fragment=new BoxScoreFragment();
+                drawerLayout.closeDrawers();
+                fragment = new BoxScoreFragment();
                 replaceFragment(fragment);
                 break;
 
@@ -93,13 +96,13 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
     }
 
     private void replaceFragment(Fragment fragment) {
-        fragmentTransaction.replace(R.id.frame_layout_summeey,fragment);
+        fragmentTransaction.replace(R.id.frame_layout_summeey, fragment);
         fragmentTransaction.commit();
     }
 
     private void FragmentStart() {
         Fragment fragment;
-        fragmentManager=getFragmentManager();
-        fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentManager = getFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
     }
 }
