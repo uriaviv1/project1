@@ -52,7 +52,7 @@ FirebaseFirestore FF;
        firebaseAuth=FirebaseAuth.getInstance();
 
         FF=FirebaseFirestore.getInstance();
-        firebaseUser= firebaseAuth.getCurrentUser();
+        firebaseUser = firebaseAuth.getCurrentUser();
         final String name=firebaseUser.getEmail();
         FF.collection("message").orderBy("id").addSnapshotListener(new com.google.firebase.firestore.EventListener<QuerySnapshot>(){
             @RequiresApi(api = Build.VERSION_CODES.M)
