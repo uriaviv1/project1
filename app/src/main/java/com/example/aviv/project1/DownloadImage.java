@@ -13,7 +13,7 @@ import java.net.HttpURLConnection;
  * Created by Administrator on 14/03/2018.
  */
 
-public class DownloadImage extends AsyncTask<String[],String,Bitmap[]>{
+public class DownloadImage extends AsyncTask<String,String,Bitmap[]>{
 
 
     private ImageView guest;
@@ -40,12 +40,13 @@ public class DownloadImage extends AsyncTask<String[],String,Bitmap[]>{
     }
 
     @Override
-    protected Bitmap[] doInBackground(String[]... strings) {
+    protected Bitmap[] doInBackground(String... strings) {
         Bitmap[] bitmaps=new Bitmap[2];
         bitmaps[0]=getBitmapFromURL(String.valueOf(strings[0]));
         bitmaps[1]=getBitmapFromURL(String.valueOf(strings[1]));
         return bitmaps;
     }
+
 
     @Override
     protected void onPostExecute(Bitmap[] bitmaps) {

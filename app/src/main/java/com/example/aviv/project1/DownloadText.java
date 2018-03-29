@@ -24,7 +24,7 @@ import java.util.Map;
  * Created by Administrator on 07/03/2018.
  */
 
-public class DownloadText extends AsyncTask<String[],String,String> {
+public class DownloadText extends AsyncTask<String,String,String> {
 
    TextView tv;
    ImageView home,guest;
@@ -39,16 +39,21 @@ public class DownloadText extends AsyncTask<String[],String,String> {
     }
 
     @Override
-    protected String doInBackground(String[]... strings) {
+    protected String doInBackground(String... strings) {
         Document document= null;
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Elements score;
         try {
-            document = Jsoup.connect(String.valueOf(strings[0])).get();
+            document = Jsoup.connect(strings[0]).get();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-         score=document.select(String.valueOf(strings[1]));
+         score=document.select(strings[1]);
 
 
         return score.text();
