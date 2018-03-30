@@ -30,6 +30,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     apply plugin: 'com.google.gms.google-services'
-    implementation files('C:/Users/Administrator/Documents/GitHub/project1/jsoup-1.11.2.jar')
-    implementation files('C:/Users/Aviv/Documents/GitHub/project1/jsoup-1.11.2.jar')
+    implementation files('libs/jsoup-1.11.2.jar')
+    implementation files('libs/universal-image-loader-1.9.5.jar')
 }

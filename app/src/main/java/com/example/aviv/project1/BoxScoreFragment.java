@@ -3,6 +3,7 @@ package com.example.aviv.project1;
 import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
@@ -13,13 +14,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by Administrator on 07/03/2018.
@@ -46,32 +51,52 @@ public class BoxScoreFragment extends Fragment {
 
         home = rootView.findViewById(R.id.homeImage);
         guest = rootView.findViewById(R.id.guestImage);
-        firebaseFirestore.collection("urls").addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                for (DocumentSnapshot documentSnapshot : documentSnapshots) {
 
-                    DocumentTostring s = documentSnapshot.toObject(DocumentTostring.class);
-                    Toast.makeText(getContext(),  documentSnapshot.toString(), Toast.LENGTH_LONG).show();
-                    if (documentSnapshot.getId().toString() == "htmlTag") {
-                        stringsText[0] = s.getString();
-                        if (documentSnapshot.getId().toString() == "score") {
-                            stringsText[1] = s.getString();
+        firebaseFirestore.collection("urls")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot querySnapshot : task.getResult()) {
+                                Log.d("tag5",querySnapshot.getId()+"=>" + querySnapshot.getData());
+
+
+                                if (querySnapshot.getId().equals("htmlTag")) {
+
+
+                                    stringsText[0]= (String) querySnapshot.get("src");
+
+                                }
+
+
+                                    if (querySnapshot.getId().equals("score")) {
+
+
+                                        stringsText[1]= (String) querySnapshot.get("src");
+
+
+
+                                    }
+
+                                if (querySnapshot.getId().equals("homeTeam")) {
+
+                                    stringsImages[0]= (String) querySnapshot.get("src");
+
+                            }
+                                if (querySnapshot.getId().equals("guestTeam")) {
+
+
+                                    stringsImages[1]= (String) querySnapshot.get("src");
+
+                                }
+                            }
+                            }
                         }
-                    }
-                    if (documentSnapshot.getId().toString() == "homeTeam") {
-                        stringsImages[0] = s.getString();
-                    }
-                    if (documentSnapshot.getId().toString() == "guestTeam") {
-                        stringsImages[1] = s.getString();
-                    }
-                }
-            }
-
-        });
+                });
 
         new DownloadImage(home, guest).execute(stringsImages);
-        new DownloadText(TV).execute(stringsText);
+      new DownloadText(TV).execute(stringsText);
         return rootView;
     }
 
