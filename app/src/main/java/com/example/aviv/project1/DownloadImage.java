@@ -65,8 +65,8 @@ public class DownloadImage extends AsyncTask<String,String,Bitmap[]>{
             e.printStackTrace();
         }
         final Bitmap bitmaps[]=new Bitmap[2];
-                bitmaps[0]=getBitmapFromURL(strings[0]);
                 bitmaps[1]=getBitmapFromURL(strings[1]);
+                bitmaps[0]=getBitmapFromURL(strings[0]);
 
 
 
@@ -76,8 +76,8 @@ public class DownloadImage extends AsyncTask<String,String,Bitmap[]>{
     @Override
     protected void onPostExecute(Bitmap[] bitmaps) {
         super.onPostExecute(bitmaps);
-        home.setImageBitmap(bitmaps[0]);
-        guest.setImageBitmap(bitmaps[1]);
+        home.setImageBitmap(bitmaps[1]);
+        guest.setImageBitmap(bitmaps[0]);
     }
 }
 

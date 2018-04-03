@@ -40,12 +40,12 @@ public class DownloadText extends AsyncTask<String,String,String> {
 
     @Override
     protected String doInBackground(String... strings) {
-        Document document= null;
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        Document document= null;
         Elements score;
         try {
             document = Jsoup.connect(strings[1]).get();
