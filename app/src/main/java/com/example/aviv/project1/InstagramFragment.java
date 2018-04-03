@@ -23,7 +23,7 @@ public class InstagramFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.instagram_page, container, false);
-        webView=new WebView(getContext());
+        webView=(WebView)rootView.findViewById(R.id.instagram);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl("https://www.instagram.com/bnei_h/");
         return rootView;
