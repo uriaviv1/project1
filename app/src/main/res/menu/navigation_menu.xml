@@ -15,7 +15,7 @@
         android:icon="@mipmap/ic_chat_black_24dp"
         >
 </item>
-    <item android:id="@+id/faceboogPage"
+    <item android:id="@+id/facebookPage"
         android:title="Facebook page"
         android:icon="@drawable/icons8facebook24">
     </item>

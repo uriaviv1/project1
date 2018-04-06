@@ -1,5 +1,6 @@
 package com.example.aviv.project1;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -28,14 +29,22 @@ public class DownloadText extends AsyncTask<String,String,String> {
 
    TextView tv;
    ImageView home,guest;
+   Context context;
+    ProgressDialog progressDialog;
 
-    public DownloadText(TextView tv) {
+    public DownloadText(TextView tv,Context context) {
         this.tv=tv;
+        this.context=context;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        progressDialog=new ProgressDialog(context);
+        progressDialog.setMessage("loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
     }
 
     @Override
@@ -65,5 +74,7 @@ public class DownloadText extends AsyncTask<String,String,String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         tv.setText(s);
+        progressDialog.dismiss();
+
     }
 }

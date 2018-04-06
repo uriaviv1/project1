@@ -89,7 +89,7 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
                 fragment = new BoxScoreFragment();
                 replaceFragment(fragment);
                 break;
-            case R.id.faceboogPage:
+            case R.id.facebookPage:
                 drawerLayout.closeDrawers();
                 fragment = new FacebookFragment();
                 replaceFragment(fragment);
