@@ -30,7 +30,7 @@ public class DownloadText extends AsyncTask<String,String,String> {
    TextView tv;
    ImageView home,guest;
    Context context;
-    ProgressDialog progressDialog;
+   private ProgressDialog progressDialog;
 
     public DownloadText(TextView tv,Context context) {
         this.tv=tv;
@@ -77,4 +77,13 @@ public class DownloadText extends AsyncTask<String,String,String> {
         progressDialog.dismiss();
 
     }
+
+    @Override
+    protected void onCancelled() {
+        progressDialog.dismiss();
+        progressDialog=null;
+        super.onCancelled();
+    }
+
+
 }

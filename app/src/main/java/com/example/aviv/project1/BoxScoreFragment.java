@@ -112,10 +112,14 @@ public class BoxScoreFragment extends Fragment {
                 });
             }
         };
-        timer.schedule(doAsynchronousTask, 0, 30000); //execute in every 30000 ms
+        timer.schedule(doAsynchronousTask, 0, 100000); //execute in every 30000 ms
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
 
+    }
 }
 
 
