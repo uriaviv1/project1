@@ -103,10 +103,11 @@ public class BoxScoreFragment extends Fragment {
             @Override
             public void run() {
                 handler.post(new Runnable() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
                     public void run() {
                         try {
                             new DownloadImage(home, guest).execute(stringsImages);
-                            new DownloadText(TV).execute(stringsText);
+                            new DownloadText(TV,getContext()).execute(stringsText);
                         } catch (Exception e) {
                             // TODO Auto-generated catch block
                         }
