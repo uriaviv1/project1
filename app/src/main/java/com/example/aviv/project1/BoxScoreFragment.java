@@ -44,9 +44,12 @@ public class BoxScoreFragment extends Fragment {
 
         rootView = inflater.inflate(R.layout.box_score, container, false);
         TV = rootView.findViewById(R.id.BoxScoreTextView);
+
         firebaseFirestore = FirebaseFirestore.getInstance();
+
         home = rootView.findViewById(R.id.homeImage);
         guest = rootView.findViewById(R.id.guestImage);
+
         firebaseFirestore.collection("urls")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -100,11 +103,10 @@ public class BoxScoreFragment extends Fragment {
             @Override
             public void run() {
                 handler.post(new Runnable() {
-                    @RequiresApi(api = Build.VERSION_CODES.M)
                     public void run() {
                         try {
                             new DownloadImage(home, guest).execute(stringsImages);
-                            new DownloadText(TV,getContext()).execute(stringsText);
+                            new DownloadText(TV).execute(stringsText);
                         } catch (Exception e) {
                             // TODO Auto-generated catch block
                         }
