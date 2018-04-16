@@ -94,9 +94,10 @@ public class BoxScoreFragment extends Fragment {
                 });
 
                 reapetAsync();
+
         return rootView;
     }
-    public void reapetAsync() {
+   public void reapetAsync() {
         final Handler handler = new Handler();
         Timer timer = new Timer();
         TimerTask doAsynchronousTask = new TimerTask() {
@@ -106,8 +107,11 @@ public class BoxScoreFragment extends Fragment {
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     public void run() {
                         try {
-                            new DownloadImage(home, guest).execute(stringsImages);
+
                             new DownloadText(TV,getContext()).execute(stringsText);
+                            new DownloadImage(home, guest,getContext()).execute(stringsImages);
+
+
                         } catch (Exception e) {
                             // TODO Auto-generated catch block
                         }
@@ -121,6 +125,7 @@ public class BoxScoreFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+
 
     }
 }

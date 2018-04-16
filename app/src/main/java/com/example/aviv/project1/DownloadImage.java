@@ -19,6 +19,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import dmax.dialog.SpotsDialog;
+
 /**
  * Created by Administrator on 14/03/2018.
  */
@@ -28,15 +30,20 @@ public class DownloadImage extends AsyncTask<String,String,Bitmap[]>{
 
     private ImageView guest;
     private ImageView home;
-    public DownloadImage(ImageView home, ImageView guest) {
+    Context context;
+
+
+    public DownloadImage(ImageView home, ImageView guest,Context context) {
         this.guest = guest;
         this.home = home;
+
 
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+
 
 
     }
@@ -78,6 +85,7 @@ public class DownloadImage extends AsyncTask<String,String,Bitmap[]>{
         super.onPostExecute(bitmaps);
         home.setImageBitmap(bitmaps[1]);
         guest.setImageBitmap(bitmaps[0]);
+
     }
 }
 
