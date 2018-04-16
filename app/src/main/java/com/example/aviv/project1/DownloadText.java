@@ -39,6 +39,7 @@ public class DownloadText extends AsyncTask<String,String,String> {
 String s="http://basket.co.il/game-zone.asp?GameId=23312";
    TextView tv;
    ImageView home,guest;
+
     Context context;
     android.app.AlertDialog alertDialog;
 

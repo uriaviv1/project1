@@ -108,7 +108,7 @@ public class BoxScoreFragment extends Fragment {
                     public void run() {
                         try {
 
-                            new DownloadText(TV,getContext()).execute(stringsText);
+                          //  new DownloadText(TV,getContext()).execute(stringsText);
                             new DownloadImage(home, guest,getContext()).execute(stringsImages);
 
 

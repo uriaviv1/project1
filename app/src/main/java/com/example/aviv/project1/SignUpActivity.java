@@ -24,7 +24,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener,OnBrightnessLow{
     EditText password, email;
     FirebaseAuth firebaseAuth;
     Intent intent;
@@ -63,6 +63,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    @Override
+    public void changeBrightness(int buttatyPercents) {
+
+    }
 }
 
 

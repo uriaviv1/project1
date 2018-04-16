@@ -57,9 +57,13 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
         context = this;
         frameLayout = (FrameLayout) findViewById(R.id.frame_layout_summeey);
         navigationView.setNavigationItemSelectedListener(this);
+        Intent serviceIntent = new Intent(this, ServiceReciver.class);
+        startService(serviceIntent);
+
 
 
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
