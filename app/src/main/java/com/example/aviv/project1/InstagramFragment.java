@@ -31,7 +31,7 @@ public class InstagramFragment extends Fragment
 
         alertDialog=new SpotsDialog(getContext(),R.style.Custom);
         alertDialog.setCancelable(false);
-        alertDialog.setMessage("Downloading");
+
         alertDialog.show();
         webView=(WebView)rootView.findViewById(R.id.instagram);
         webView.getSettings().setJavaScriptEnabled(true);

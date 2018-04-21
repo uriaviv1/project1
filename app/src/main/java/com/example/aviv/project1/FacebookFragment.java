@@ -32,10 +32,8 @@ public class FacebookFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.facebook_page, container, false);
         webView = rootView.findViewById(R.id.facebookFragment);
-
-        alertDialog=new SpotsDialog(getContext(),R.style.Custom);
+        alertDialog=new SpotsDialog(getActivity(),R.style.Custom);
         alertDialog.setCancelable(false);
-        alertDialog.setMessage("Downloading");
         alertDialog.show();
         webView.setWebViewClient(new WebViewClient() {
             @Override

@@ -1,11 +1,14 @@
 package com.example.aviv.project1;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.BatteryManager;
+import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -17,9 +20,13 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-public class SummeyAct extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,OnBrightnessLow{
+
+import static android.provider.CalendarContract.CalendarCache.URI;
+
+public class SummeyAct extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     NavigationView navigationView;
     FirebaseAuth firebaseAuth;
@@ -32,22 +39,16 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
     android.app.FragmentTransaction fragmentTransaction;
     private TextView tv;
     Context context;
-    BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            //int butteryPercent=intent.getIntExtra(BatteryManager.EXTRA_LEVEL,0);
-           // changeBrightness(butteryPercent);
-        }
-    };
-
-
+    private boolean seccess=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summey);
+
         firebaseAuth = FirebaseAuth.getInstance();
         context=this;
+        checkSystemWritePermission();
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
@@ -57,13 +58,46 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
         context = this;
         frameLayout = (FrameLayout) findViewById(R.id.frame_layout_summeey);
         navigationView.setNavigationItemSelectedListener(this);
-        Intent serviceIntent = new Intent(this, ServiceReciver.class);
-        startService(serviceIntent);
+
 
 
 
     }
 
+
+        private void checkSystemWritePermission() {
+        Boolean value;
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+            value=Settings.System.canWrite(this);
+            if(value)
+            {
+                seccess=true;
+                startService(new Intent(this,ServiceReciver2.class));
+            }
+            else {
+                Intent intent=new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+                intent.setData(URI.parse("package:"+getApplicationContext().getPackageName()));
+                startActivityForResult(intent,1000);
+            }
+
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1000)
+        {
+            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+                Boolean value=Settings.System.canWrite(this);
+                if(value)
+                {
+                    seccess=true;
+                    startService(new Intent(this,ServiceReciver2.class));
+                }
+            }
+        }
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -126,12 +160,7 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
 
     }
 
-   // @Override
-   // protected void onStop() {
 
-       //this.unregisterReceiver(this.broadcastReceiver);
-       // super.onStop();
-   // }
 
     private void replaceFragment(Fragment fragment) {
         fragmentTransaction.replace(R.id.frame_layout_summeey, fragment);
@@ -144,21 +173,7 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
         fragmentTransaction = fragmentManager.beginTransaction();
     }
 
-   // protected void onStart() {
-       // registerReceiver(this.broadcastReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-      //  super.onStart();
-   // }
 
-    @Override
-    public void changeBrightness(int buttatyPercents) {
-        if(buttatyPercents<10) {
-            int brightness;
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.SCREEN_BRIGHTNESS_MODE,
-                    Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
-          //  brightness = System.getInt(getContentResolver(),
-                    //Settings.System.SCREEN_BRIGHTNESS;
-        }
 
-    }
+
 }
