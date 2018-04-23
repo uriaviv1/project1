@@ -43,7 +43,6 @@ public class ServiceReciver extends Service implements OnBatteryLow {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(getApplicationContext(), bateria, Toast.LENGTH_SHORT).show();
         return super.onStartCommand(intent, flags, startId);
     }
 
