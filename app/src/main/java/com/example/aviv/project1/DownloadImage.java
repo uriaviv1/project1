@@ -66,11 +66,6 @@ public class DownloadImage extends AsyncTask<String,String,Bitmap[]>{
 
     @Override
     protected Bitmap[] doInBackground(final String... strings) {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         final Bitmap bitmaps[]=new Bitmap[2];
                 bitmaps[1]=getBitmapFromURL(strings[1]);
                 bitmaps[0]=getBitmapFromURL(strings[0]);

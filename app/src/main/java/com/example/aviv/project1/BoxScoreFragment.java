@@ -90,10 +90,11 @@ public class BoxScoreFragment extends Fragment {
                                 }
                             }
                             }
+                        reapetAsync();
                         }
                 });
 
-                reapetAsync();
+
 
         return rootView;
     }
@@ -107,9 +108,11 @@ public class BoxScoreFragment extends Fragment {
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     public void run() {
                         try {
-
-                          //  new DownloadText(TV,getContext()).execute(stringsText);
+                            Log.d("text[0]",stringsText[0]);
+                            Log.d("text[1]",stringsText[1]);
                             new DownloadImage(home, guest,getContext()).execute(stringsImages);
+                            new DownloadText(TV,getContext()).execute(stringsText);
+
 
 
                         } catch (Exception e) {

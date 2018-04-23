@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -64,24 +65,26 @@ String s="http://basket.co.il/game-zone.asp?GameId=23312";
     @Override
     protected String doInBackground(String... strings) {
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Document document= null;
-        Elements score;
-        //if(!(strings[1].length()==s.length())) {
-            try {
-                document = Jsoup.connect(strings[1]).get();
 
+        Document document= null;
+        //if(!(strings[1].length()==s.length())) {
+//        Log.e("Tag/Class",strings[0]);
+        try {
+                document = Jsoup.connect(strings[1]).get();
+                Elements as=document.select("div."+strings[0]);
+                if(as!=null){
+                    Element firstDiv=as.first();
+                    if(firstDiv!=null){
+                       return firstDiv.html();
+                    }
+                }else{
+                    Log.e("Error","Is Null1");
+
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            score = document.select(" "+strings[0]);
-            alertDialog.dismiss();
-
-            return score.text();
+           return "No Result";
 
        // }
 

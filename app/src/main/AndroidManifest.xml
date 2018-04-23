@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
 
     <application
         android:allowBackup="true"
@@ -41,7 +41,7 @@
             android:enabled="false"
 
             android:exported="false"></receiver>
-        <service android:name=".ServiceReciver2"></service>
+        <service android:name=".ServiceReciver"></service>
     </application>
 
 </manifest>

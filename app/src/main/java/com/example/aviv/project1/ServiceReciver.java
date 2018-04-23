@@ -1,13 +1,10 @@
 package com.example.aviv.project1;
 
-import android.app.IntentService;
 import android.app.Service;
-import android.bluetooth.BluetoothClass;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.BatteryManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.provider.Settings;
@@ -18,7 +15,7 @@ import android.widget.Toast;
  * Created by Aviv on 21/04/2018.
  */
 
-public class ServiceReciver2 extends Service implements OnBrightnessLow{
+public class ServiceReciver extends Service implements OnBatteryLow {
    int status=0;
    String bateria="0";
 
@@ -54,18 +51,17 @@ public class ServiceReciver2 extends Service implements OnBrightnessLow{
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Toast.makeText(getApplicationContext(), "Destroy", Toast.LENGTH_SHORT).show();
         unregisterReceiver(broadcastReceiver);
     }
 
     @Override
     public void changeBrightness(int buttatyPercents) {
-        if(buttatyPercents<10)
+        if(buttatyPercents<15)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (Settings.System.canWrite(getApplicationContext())); {
                 Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE,
                         Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
-                Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 0);
+                Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 30);
             }
         }
     }

@@ -1,13 +1,8 @@
 package com.example.aviv.project1;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.Uri;
-import android.os.BatteryManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -20,7 +15,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -72,7 +66,7 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
             if(value)
             {
                 seccess=true;
-                startService(new Intent(this,ServiceReciver2.class));
+                startService(new Intent(this,ServiceReciver.class));
             }
             else {
                 Intent intent=new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
@@ -93,7 +87,7 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
                 if(value)
                 {
                     seccess=true;
-                    startService(new Intent(this,ServiceReciver2.class));
+                    startService(new Intent(this,ServiceReciver.class));
                 }
             }
         }
