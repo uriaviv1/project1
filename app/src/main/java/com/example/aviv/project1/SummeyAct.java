@@ -52,6 +52,10 @@ public class SummeyAct extends AppCompatActivity implements NavigationView.OnNav
         context = this;
         frameLayout = (FrameLayout) findViewById(R.id.frame_layout_summeey);
         navigationView.setNavigationItemSelectedListener(this);
+        FragmentStart();
+        Fragment fragment=new BoxScoreFragment();
+        replaceFragment(fragment);
+
 
 
 
