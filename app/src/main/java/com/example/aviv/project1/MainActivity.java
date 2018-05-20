@@ -33,8 +33,9 @@ Context context;
         if(firebaseUser!=null)
         {
             intent=new Intent(this,SummeyAct.class);
-            startActivity(intent);
             finish();
+            startActivity(intent);
+
         }
 
     }

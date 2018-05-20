@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/massege"
-        android:layout_width="85dp"
+        android:layout_width="113dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"

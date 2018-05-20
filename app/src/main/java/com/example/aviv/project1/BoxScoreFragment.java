@@ -1,5 +1,6 @@
 package com.example.aviv.project1;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import dmax.dialog.SpotsDialog;
 
 /**
  * Created by Administrator on 07/03/2018.
@@ -49,12 +52,15 @@ public class BoxScoreFragment extends Fragment {
 
         home = rootView.findViewById(R.id.homeImage);
         guest = rootView.findViewById(R.id.guestImage);
-
+       final AlertDialog alertDialog=new SpotsDialog(getContext(),R.style.Custom);
+        alertDialog.setCancelable(false);
+        alertDialog.show();
         firebaseFirestore.collection("urls")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot querySnapshot : task.getResult()) {
                                 Log.d("tag5",querySnapshot.getId()+"=>" + querySnapshot.getData());
@@ -90,6 +96,7 @@ public class BoxScoreFragment extends Fragment {
                                 }
                             }
                             }
+                            alertDialog.dismiss();
                         reapetAsync();
                         }
                 });

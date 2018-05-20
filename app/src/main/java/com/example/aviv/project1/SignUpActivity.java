@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -15,7 +16,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class SignUpActivity extends AppCompatActivity implements View.OnClickListener,OnBatteryLow {
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
     EditText password, email;
     FirebaseAuth firebaseAuth;
     Intent intent;
@@ -45,19 +46,19 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-
-                    startActivity(intent);
                     finish();
+                    startActivity(intent);
+
+                }
+                else {
+                    Toast.makeText(context, "oops something went wrong", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
     }
 
-    @Override
-    public void changeBrightness(int buttatyPercents) {
 
-    }
 }
 
 
